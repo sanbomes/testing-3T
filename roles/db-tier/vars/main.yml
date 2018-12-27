@@ -1,0 +1,7 @@
+---
+# vars file for roles/db-tier
+
+DATABASE_NAME: postgres
+DATABASE_USER: postgres
+DATABASE_PASSWORD: ansible
+POSTGRES_PORT: 5432
