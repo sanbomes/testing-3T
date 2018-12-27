@@ -76,6 +76,13 @@
   become_user: postgres
   tags:
     - set_postgres_password
+
+- name: Install firewalld
+  package:
+    name: firewalld
+- name: ensure that firewalld is started and enable at boot
+  service: name=firewalld enabled=yes state=started
+
 - name: insert firewalld rule for postgresql port
   firewalld: port={{ POSTGRES_PORT }}/tcp permanent=true state=enabled immediate=yes
   notify: restart firewalld

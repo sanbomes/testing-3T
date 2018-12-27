@@ -3,3 +3,9 @@
   service:
     name: postgresql.service
     state: restarted
+
+
+- name: restart firewalld
+  service:
+    name: firewalld
+    state: restarted

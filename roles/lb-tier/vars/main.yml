@@ -5,3 +5,5 @@ haproxy_pkg:
  - haproxy
  - firewalld
 haproxy_srv: haproxy
+
+GUID: c4c6
