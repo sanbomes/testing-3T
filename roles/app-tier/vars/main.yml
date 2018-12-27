@@ -6,4 +6,3 @@ tom_pkg: tomcat
 tom_srv: tomcat
 tom_web_root: /usr/share/tomcat/webapps/ROOT
 http_port: 8080
-https_port: 8443

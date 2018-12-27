@@ -18,6 +18,12 @@
     name: "{{ tom_srv }}"
     enabled: yes
 
+- name: Start tomcat service
+  service:
+   name: tomcat
+   state: started
+   enabled: true
+
 - name: create tomcat default web directory
   file:
     path: "{{ tom_web_root }}"
@@ -41,25 +47,21 @@
    state: started
    enabled: true
 
-- name: insert firewalld rule for tomcat http port
-  firewalld: port={{ http_port }}/tcp permanent=true state=enabled immediate=yes
-  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
+#- name: insert firewalld rule for tomcat http port
+#  firewalld: port={{ http_port }}/tcp permanent=true state=enabled immediate=yes
+#  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
 
-- name: insert firewalld rule for tomcat https port
-  firewalld: port={{ https_port }}/tcp permanent=true state=enabled immediate=yes
-  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
+#- name: insert firewalld rule for tomcat https port
+#  firewalld: port={{ https_port }}/tcp permanent=true state=enabled immediate=yes
+#  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
 
 #- name: wait for tomcat to start
 #  wait_for: port={{http_port}}
-  notify: restart_firewalld
-
-#- name: Open http port
-#  firewalld:
-#   service: http
-#   state: enabled
-#   immediate: true
-#   permanent: true
 #  notify: restart_firewalld
+
+- name: Open tomcat http port
+  firewalld: port={{http_port}}/tcp state=enabled immediate=true permanent=true
+  notify: restart_firewalld
 
 #- name: restart tomcat
 #  service: 

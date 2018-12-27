@@ -3,9 +3,11 @@
 
 - name: restart_tomcat
   service:
-    name: "{{ tom_srv }}"
+    name: tomcat
     state: restarted
 
 - name: restart_firewalld
-  service: name=firewalld state=restarted
+  service: 
+    name: firewalld 
+    state: restarted
 
